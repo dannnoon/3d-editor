@@ -35,7 +35,15 @@ class GUI {
         var objectsMenu = this.objectsMenu;
         var folder = this.objectsMenu.addFolder(name);
 
-        var objectConfig = { x : 0, y : 0, z : 0, color : mapObject.mesh.material.color.getHex() };
+        var objectConfig = { 
+            x : 0, 
+            y : 0, 
+            z : 0, 
+            color : mapObject.mesh.material.color.getHex(),
+            rotationX : 0,
+            rotationY : 0,
+            visible : true
+        };
 
         folder.add(objectConfig, 'x').name('X axis').min(-600).max(600).step(1).onChange(
             function(value) {
@@ -52,9 +60,26 @@ class GUI {
                 mapObject.mesh.position.z = value;
             }
         );
+        folder.add(objectConfig, 'rotationX').name('Rotation X').min(0).max(360).step(0.01).onChange(
+            function(value) {
+                value = value * 2 * Math.PI / 360;
+                mapObject.mesh.rotation.x = value;
+            }
+        );
+        folder.add(objectConfig, 'rotationY').name('Rotation Y').min(0).max(360).step(0.01).onChange(
+            function(value) {
+                value = value * 2 * Math.PI / 360;
+                mapObject.mesh.rotation.y = value;
+            }
+        );
         folder.addColor(objectConfig, 'color').name('Color').onChange(
             function(value) {
                 mapObject.mesh.material.color.setHex(value);
+            }
+        )
+        folder.add(objectConfig, 'visible').name('Visible').onChange(
+            function(value) {
+                mapObject.mesh.visible = value;
             }
         )
 
