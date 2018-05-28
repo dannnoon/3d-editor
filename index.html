@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+    <head>
+		<title>3D Editor</title>
+        <meta charset="utf-8"/>
+        <style>
+			body{
+				margin: 0px;
+				background-color: black;
+				overflow: hidden;
+			}
+            #gui-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 100;
+            }
+		</style>
+    </head>
+    <body>
+
+    <div id="gui-container"></div>
+    <div id="my-renderer" style="position: absolute; left:  0px; top: 0px"></div>
+
+		<script src="lib/three.js"></script>
+		<script src="lib/ObjectLoader.js"></script>
+        <script src="lib/MTLLoader.js"></script>
+        <script src="lib/TrackballControls.js"></script>
+        <script src="lib/OrbitControls.js"></script>
+        <script src="lib/dat.gui.min.js"></script>
+        <script src="lib/DDSLoader.js"></script>
+        <script src="lib/stats.min.js"></script>
+        <script src="script/MapObject.js"></script>
+        <script src="script/GUI.js"></script>
+		<script src="script/editor.js"></script>  
+		<script>
+		init();
+		animate();
+        </script>  
+    </body>
+</html>
