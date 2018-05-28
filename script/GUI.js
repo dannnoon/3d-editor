@@ -18,9 +18,16 @@ class GUI {
                 parent.addObjectToMenu(mapObject);
             }
         }
+        var addHeartObject = {
+            add : function() {
+                var mapObject = new MapObject('heart');
+                parent.addObjectToMenu(mapObject);
+            }
+        }
 
-        this.gui.add(addBoxObject, 'add').name('Add box');
+        this.gui.add(addBoxObject, 'add').name('Add square');
         this.gui.add(addSphereObject, 'add').name('Add sphere');
+        this.gui.add(addHeartObject, 'add').name('Add heart');
 
         this.objectsMenu = this.gui.addFolder('Objects');
         this.objectsMenu.open();
@@ -39,6 +46,7 @@ class GUI {
             x : 0, 
             y : 0, 
             z : 0, 
+            s : 1,
             color : mapObject.mesh.material.color.getHex(),
             rotationX : 0,
             rotationY : 0,
@@ -58,6 +66,11 @@ class GUI {
         folder.add(objectConfig, 'z').name('Z axis').min(-600).max(600).step(1).onChange(
             function(value) {
                 mapObject.mesh.position.z = value;
+            }
+        );
+        folder.add(objectConfig, 's').name('Scale').min(0.01).max(10).step(0.01).onChange(
+            function(value) {
+                mapObject.mesh.scale.set(value, value, value);
             }
         );
         folder.add(objectConfig, 'rotationX').name('Rotation X').min(0).max(360).step(0.01).onChange(
